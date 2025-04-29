@@ -39,7 +39,7 @@ export type ActionResponse = {
   error?: string
 }
 
-export async function signin(formData: FormData): Promise<ActionResponse> {
+export async function signIn(formData: FormData): Promise<ActionResponse> {
   try {
     // Add a small delay to simulate network latency
     await mockDelay(700)
@@ -101,7 +101,7 @@ export async function signin(formData: FormData): Promise<ActionResponse> {
   }
 }
 
-export async function signup(formData: FormData): Promise<ActionResponse> {
+export async function signUp(formData: FormData): Promise<ActionResponse> {
   try {
     // Add a small delay to simulate network latency
     await mockDelay(700)
