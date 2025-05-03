@@ -5,7 +5,9 @@ import { cache } from 'react'
 import { issues, users } from '@/db/schema'
 import { mockDelay } from './utils'
 
-export const getCurrentUser = async () => {
+import { unstable_cacheTag as cacheTag } from 'next/cache'
+
+export const getCurrentUser = cache(async () => {
   const session = await getSession()
   if (!session) return null
 
@@ -20,7 +22,7 @@ export const getCurrentUser = async () => {
     console.error('Error getting user by ID:', error)
     return null
   }
-}
+})
 
 export const getUserByEmail = async (email: string) => {
   try {
@@ -33,7 +35,10 @@ export const getUserByEmail = async (email: string) => {
 }
 
 export async function getIssues() {
+  'use cache'
+  cacheTag('issues')
   try {
+    await mockDelay(1000)
     const result = await db.query.issues.findMany({
       with: {
         user: true,
@@ -44,5 +49,20 @@ export async function getIssues() {
   } catch (error) {
     console.error('Error fetching issues:', error)
     throw new Error('Failed to fetch issues')
+  }
+}
+
+export const getIssue = async (id: number) => {
+  try {
+    const issue = await db.query.issues.findFirst({
+      where: eq(issues.id, id),
+      with: {
+        user: true,
+      },
+    })
+    return issue
+  } catch (e) {
+    console.error(e)
+    return null
   }
 }
