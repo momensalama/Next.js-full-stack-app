@@ -70,6 +70,7 @@ export default function SignInPage() {
               id="email"
               name="email"
               type="email"
+              value="test@test.com"
               autoComplete="email"
               required
               disabled={isPending}
@@ -89,6 +90,7 @@ export default function SignInPage() {
               id="password"
               name="password"
               type="password"
+              value="test@test.com"
               autoComplete="current-password"
               required
               disabled={isPending}
