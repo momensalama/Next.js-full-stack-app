@@ -2,6 +2,7 @@
 
 A modern project management application built with Next.js, inspired by Linear's sleek design and functionality.
 
+![CI](https://github.com/momensalama/Next.js-full-stack-app/workflows/CI/badge.svg)
 ## ✨ Features
 
 - 🔐 Secure user authentication (sign up, sign in, sign out)
